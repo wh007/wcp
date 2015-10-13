@@ -10,19 +10,24 @@ import com.tigerframework.wcp.channel.sms.service.ISmsService;
 public class SmsService implements ISmsService {
 
 	@Override
-	public msmResultBean send(String mobiles, String content) {
+	public boolean send(String mobiles, String content) {
+		msmResultBean msmResultBean = nativeSend(mobiles, content);
+		if (msmResultBean.getErrMsg().value.contains("成功提交")) {
+			return true;
+		}
+		return false;
+	}
+
+	private msmResultBean nativeSend(String mobiles, String content) {
 		return sms_Send.SendMsg(mobiles, content);
 	}
-	// 判断是否发送成功可使用以下逻辑
-	// msmResultBean.getErrMsg().value.indexOf("成功提交") != -1
-	// public static void main(String[] args) {
-	// SmsService service = new SmsService();
-	// msmResultBean msmResultBean = service.send("13426135918", "测试中文501");
-	// String result = msmResultBean.getErrMsg().value;
-	// if (result.indexOf("成功提交") != -1) {
-	// System.out.println("success");
-	// } else {
-	// System.out.println("fail");
-	// }
-	// }
+
+	public static void main(String[] args) {
+		SmsService service = new SmsService();
+		if (service.send("13810011368", "测试中文502")) {
+			System.out.println("success");
+		} else {
+			System.out.println("fail");
+		}
+	}
 }
