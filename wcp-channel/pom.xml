@@ -10,6 +10,10 @@
 		<artifactId>wcp</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
+	<properties>
+		<fastjson.verison>1.2.7</fastjson.verison>
+		<httpclient.version>4.2.5</httpclient.version>
+	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -24,14 +28,23 @@
 			<artifactId>spring-boot-starter-freemarker</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-ws</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
-			<version>1.2.7</version>
+			<version>${fastjson.verison}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
-			<version>4.2.5</version><!--$NO-MVN-MAN-VER$-->
+		</dependency>
+		<!-- sms-api -->
+		<dependency>
+			<groupId>com.mobset</groupId>
+			<artifactId>sms-api</artifactId>
+			<version>1.0</version>
 		</dependency>
 	</dependencies>
 	<build>
